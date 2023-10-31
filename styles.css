@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+:root { /*Ou [html{...}] definindo uma variavel css chamada [--text-color] que tem como valor a cor branco */
+ --text-color: white;
+}
+
+body {
+    /* definindo caracteristicas do body por extenso:
+
+    background-image: url(./assets/bg-mobile.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover
+    */
+
+    /* definindo caracteristicas do body de forma simplificada (short hand / atalho)
+
+     background: cor(n estamos usando nesse exemplo) imagem repete? posicao/tamanho; 
+     background: url(./assets/bg-mobile.jpg) no-repeat top center/cover; 
+    */
+
+    background: url(./assets/bg-mobile.jpg) no-repeat top center/cover;
+
+}
+
+/*Asterisco e o seletor universal, significa que o comando entre as chaves vai ser aplicado a todos
+  os elementos dentro do <body></body> body{} */
+body * {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color); /*aqui foi definido que o atributo cor do elemento css [body * {...}] tem como valor o valor da variavel css [var(--text-color);]*/
+       }
+
+#container1 {
+    width: 360px;
+    margin: 56px auto 0px auto;
+    padding: 0 24px;
+            }
+        /*tambem funciona com margin-top:56px; */
+    /*e possivel setar as quatro medidas no mesmo atributo margin: ou padding: nesse caso os valores devem ser inseridos em 3 medidas como margin: top, right/left, bottom
+    ou 4 medidas margin: top, right, bottom, left. (sentido horario sempre) no primeiro caso um exemplo com valores reais seria margin: auto, 56px, auto;
+    os valores lidos no atributo simplificado so seguem a ordem valortop, valorright/left, valorbottom se setado com 3 valores ou a ordem
+    valortop, valorright, valorbottom, valorleft */
+            
+
+/* no css geralmente a altura dos objetos e automatica por isso veremos mais width do que height nas medidas
+   outra explicacao e que a maioria das paginas tem a rolagem pra baixo entao quanto mais objetos dentro de uma caixa, a altura vai sendo adaptada*/            
+
+   /*em elementos inline nao e possivel aplicar o margin: auto; somente em elementos block
+     imagens sao por padrao elementos inline, por isso para aplicar margin:auto; deve ser transformado em elemento block ou inline-block
+     que mantem caracteristicas das duas formas de display */
+
+     /* gambiarrinha css: se criarmos um elemento pai de um elemento inline como o #profile img{} que seria #profile{} esse sim aceitaria um comando para centralizar
+     a imagem, por exemplo #profile{text-align: center} ou seja, todos os elementos inline aceitam que um elemento pai defina se o objeto vai ser centralizado
+     a direita ou esquerda.
+     
+     Ja elementos que sao display: block; por padrao, nao aceitam comando de posicao text-align vindo do elemento pai */
+
+#profile {
+    text-align: center;
+    padding: 24px;
+    margin-top: 8px;
+         }
+
+#profile img {
+    width: 112px;
+    display: block;
+    margin: auto;
+             }
+
+/*#profile{} = atribui caracteristicas CSS ao elemento HTML <div id="profile"></div>
+  #profile p{} = atribui caracteristicas CSS ao elemento HTML <p></p> dentro da <div id="profile"></div>*/
+
+  #profile p {
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    }
+
+    /* links - lista */
+    ul {
+      list-style: none; /*para retirar numeradores de lista que vem por padrao em tags html <ul><li>...</li></ul>*/
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px 0;
+       }
+
+    ul li a {  /*criando os botoes normal*/ 
+        display: flex;
+        justify-content: center; /*alinha o conteudo da caixa horizontalmente no centro dela, ou pode ser feito tambem com [display: block;[ [text-align: center;[*/
+        align-items: center; /*quando a caixa possui uma propriedade [height] ou [padding] que determina a altura, alinha verticalmente o conteudo da caixa no centro dela. */
+        padding: 16px 24px;
+        
+        background: rgba(255, 255, 255, 0.1); /*selecao de cor sendo os numeros valores do R, G, B e o ultimo e o canal Alfa que define a transparencia da cor*/
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 8px; /*[border-radius: valor] define se o objeto tera bordas arredondadas e a medida*/
+        backdrop-filter: blur(4px); /*adiciona efeito blur ao objeto*/
+
+        /*alguns navegadores requerem a extensao webkit para que o blur funcione corretamente (can-i-use.com info) ficando dessa forma:*/
+        -webkit-backdrop-filter: blur(4px);
+
+        text-decoration: none; /*para retirar o sublinhado padrao de hyperlink ou dar estilo ao texto*/
+        font-weight: 500; /*valores acima de 400 sao fontes bold*/
+
+        transition: background 0.7s /*essa propriedade define como sera feita a transicao de elementos quando por exemplo, o usuario passar o mouse em cima
+        de um botao e a cor de fundo do botao unpressed ser trocada pela cor de fundo do botao hover. nesse caso vai acontecer uma transicao gradual do botao normal
+        para o hover em um total de tempo de 0,7 segundos*/
+            }  
+            
+    ul li a:hover { /*criando os botoes hover (quando passa o mouse em cima) esse [:hover] e chamado de pseudo-seletor ou sudo-selector
+         e altera as propriedades de um objeto ja criado, mas apenas enquanto o usuario passar o mouse em cima do objeto */
+         background: rgba(255, 255, 255, 0.05);
+         border: 1.5px solid var(--text-color); /*aqui foi atribuido a caracteristica COR do objeto para o valor da variavel css [var(--text-color);]*/
+                  }   
+          
+            /*social links*/
+    #social {
+        display: flex;
+        padding: 24px 0;
+        justify-content: center;
+        gap: 8px;
+
+        /*em css, font nao se refere apenas a fonte de texto. nesse caso font-size esta definindo que o tamanho do objeto na caixa #social (no nosso caso, os icones)
+        e de 24px */
+        font-size: 24px;
+            }
+
+    #social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        transition: background 0.7s;
+        border-radius: 20px;
+    }        
+            
+     #social a:hover { /*caracteristicas dos botoes redes sociais quando passa o mouse em cima*/
+        background: rgba(255, 255, 255, 0.2);
+                     }    
+                     
+     footer { 
+        padding: 24px 0;
+        text-align: center;
+        font-size: 14px;
+
+        text-decoration: none;
+            }                
+   
